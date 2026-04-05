@@ -2,7 +2,8 @@
 
 This reference contains minimal, reproducible examples (MREs) for common Genkit patterns.
 
-> **Disclaimer**: These examples use **Google AI** models (`googleAI`, `gemini-*`) for demonstration. The patterns apply to **any provider**. To use a different provider:
+> **Disclaimer**: These examples use **Google AI** models (`googleAI`, `gemini-*`) for demonstration. The patterns apply
+> to **any provider**. To use a different provider:
 > 1. Search the docs for the correct plugin: `genkit docs:search "plugins"`.
 > 2. Install and configure the plugin.
 > 3. Swap the model reference in the code.

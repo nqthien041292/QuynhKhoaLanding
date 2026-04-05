@@ -62,7 +62,8 @@ The media (url field) contain base64 encoded data uri. You can decode it and sav
 
 ## Text-to-Speech (TTS)
 
-You can use text-to-speech models to generate audio from text. The generated `Media` object will contain base64 encoded PCM audio in its data URI.
+You can use text-to-speech models to generate audio from text. The generated `Media` object will contain base64 encoded
+PCM audio in its data URI.
 
 ```dart
 // Define a TTS flow

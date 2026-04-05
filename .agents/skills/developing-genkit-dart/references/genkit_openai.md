@@ -1,6 +1,7 @@
 # Genkit OpenAI Plugin (`genkit_openai`)
 
-OpenAI-compatible API plugin for Genkit Dart. Supports OpenAI models and other compatible APIs (xAI, DeepSeek, Together AI, Groq, etc.).
+OpenAI-compatible API plugin for Genkit Dart. Supports OpenAI models and other compatible APIs (xAI, DeepSeek, Together
+AI, Groq, etc.).
 
 ## Basic Usage
 

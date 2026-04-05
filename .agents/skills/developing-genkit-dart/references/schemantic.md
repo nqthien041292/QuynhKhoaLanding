@@ -1,10 +1,11 @@
 # Schemantic
 
-Schemantic is a general-purpose Dart library used for defining strongly typed data classes that automatically bind to reusable runtime JSON schemas. It is standard for the `genkit-dart` framework but works independently as well.
+Schemantic is a general-purpose Dart library used for defining strongly typed data classes that automatically bind to
+reusable runtime JSON schemas. It is standard for the `genkit-dart` framework but works independently as well.
 
 ## Core Concepts
 
-Always use `schemantic` when strongly typed JSON parsing or programmatic schema validation is required. 
+Always use `schemantic` when strongly typed JSON parsing or programmatic schema validation is required.
 
 - Annotate your abstract classes with `@Schema()`.
 - Use the `$` prefix for abstract schema class names (e.g., `abstract class $User`).
@@ -41,7 +42,8 @@ abstract class $MySubObj {
 
 2. **Using the Generated Class:**
 
-The builder creates a concrete class `MyObj` (no `$`) with a factory constructor (`MyObj.fromJson`) and a regular constructor.
+The builder creates a concrete class `MyObj` (no `$`) with a factory constructor (`MyObj.fromJson`) and a regular
+constructor.
 
 ```dart
 // Creating an instance
@@ -56,7 +58,8 @@ final parsed = MyObj.fromJson({'name': 'test', 'subObj': {'foo': 'bar'}});
 
 3. **Accessing Schemas at Runtime:**
 
-The generated data classes have a static `$schema` field (of type `SchemanticType<T>`) which can be used to pass the definition into functions or to extract the raw JSON schema.
+The generated data classes have a static `$schema` field (of type `SchemanticType<T>`) which can be used to pass the
+definition into functions or to extract the raw JSON schema.
 
 ```dart
 // Access JSON schema
@@ -125,7 +128,8 @@ abstract class $User {
 
 ## Recursive Schemas
 
-For recursive structures (like trees), must use `useRefs: true` inside the generated jsonSchema property. You define it normally:
+For recursive structures (like trees), must use `useRefs: true` inside the generated jsonSchema property. You define it
+normally:
 
 ```dart
 @Schema()
@@ -134,4 +138,5 @@ abstract class $Node {
   List<$Node>? get children;
 }
 ```
+
 *Note*: `Node.$schema.jsonSchema(useRefs: true)` generates schemas with JSON Schema `$ref`.

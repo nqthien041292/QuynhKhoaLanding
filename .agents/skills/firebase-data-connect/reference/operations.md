@@ -1,6 +1,7 @@
 # Operations Reference
 
 ## Contents
+
 - [Generated Fields](#generated-fields)
 - [Queries](#queries)
 - [Mutations](#mutations)
@@ -13,24 +14,27 @@
 
 Data Connect auto-generates fields for each `@table` type:
 
-| Generated Field | Purpose | Example |
-|-----------------|---------|---------|
-| `movie(id: UUID, key: Key, first: Row)` | Get single record | `movie(id: $id)` or `movie(first: {where: ...})` |
-| `movies(where: ..., orderBy: ..., limit: ..., offset: ..., distinct: ..., having: ...)` | List/filter records | `movies(where: {...})` |
-| `movie_insert(data: ...)` | Create record | Returns key |
-| `movie_insertMany(data: [...])` | Bulk create | Returns keys |
-| `movie_update(id: ..., data: ...)` | Update by ID | Returns key or null |
-| `movie_updateMany(where: ..., data: ...)` | Bulk update | Returns count |
-| `movie_upsert(data: ...)` | Insert or update | Returns key |
-| `movie_delete(id: ...)` | Delete by ID | Returns key or null |
-| `movie_deleteMany(where: ...)` | Bulk delete | Returns count |
+| Generated Field                                                                         | Purpose             | Example                                          |
+|-----------------------------------------------------------------------------------------|---------------------|--------------------------------------------------|
+| `movie(id: UUID, key: Key, first: Row)`                                                 | Get single record   | `movie(id: $id)` or `movie(first: {where: ...})` |
+| `movies(where: ..., orderBy: ..., limit: ..., offset: ..., distinct: ..., having: ...)` | List/filter records | `movies(where: {...})`                           |
+| `movie_insert(data: ...)`                                                               | Create record       | Returns key                                      |
+| `movie_insertMany(data: [...])`                                                         | Bulk create         | Returns keys                                     |
+| `movie_update(id: ..., data: ...)`                                                      | Update by ID        | Returns key or null                              |
+| `movie_updateMany(where: ..., data: ...)`                                               | Bulk update         | Returns count                                    |
+| `movie_upsert(data: ...)`                                                               | Insert or update    | Returns key                                      |
+| `movie_delete(id: ...)`                                                                 | Delete by ID        | Returns key or null                              |
+| `movie_deleteMany(where: ...)`                                                          | Bulk delete         | Returns count                                    |
 
 ### Relation Fields
+
 For a `Post` with `author: User!`:
+
 - `post.author` - Navigate to related User
 - `user.posts_on_author` - Reverse: all Posts by User
 
 For many-to-many via `MovieActor`:
+
 - `movie.actors_via_MovieActor` - Get all actors
 - `actor.movies_via_MovieActor` - Get all movies
 
@@ -68,19 +72,19 @@ query ListMovies($genre: String, $minRating: Int) @auth(level: PUBLIC) {
 
 ### Filter Operators
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `eq` | Equals | `{ title: { eq: "Matrix" }}` |
-| `ne` | Not equals | `{ status: { ne: "deleted" }}` |
-| `gt`, `ge` | Greater than (or equal) | `{ rating: { ge: 4 }}` |
-| `lt`, `le` | Less than (or equal) | `{ releaseYear: { lt: 2000 }}` |
-| `in` | In list | `{ genre: { in: ["Action", "Drama"] }}` |
-| `nin` | Not in list | `{ status: { nin: ["deleted", "hidden"] }}` |
-| `isNull` | Is null check | `{ description: { isNull: true }}` |
-| `contains` | String contains | `{ title: { contains: "war" }}` |
-| `startsWith` | String starts with | `{ title: { startsWith: "The" }}` |
-| `endsWith` | String ends with | `{ email: { endsWith: "@gmail.com" }}` |
-| `includes` | Array includes | `{ tags: { includes: "sci-fi" }}` |
+| Operator     | Description             | Example                                     |
+|--------------|-------------------------|---------------------------------------------|
+| `eq`         | Equals                  | `{ title: { eq: "Matrix" }}`                |
+| `ne`         | Not equals              | `{ status: { ne: "deleted" }}`              |
+| `gt`, `ge`   | Greater than (or equal) | `{ rating: { ge: 4 }}`                      |
+| `lt`, `le`   | Less than (or equal)    | `{ releaseYear: { lt: 2000 }}`              |
+| `in`         | In list                 | `{ genre: { in: ["Action", "Drama"] }}`     |
+| `nin`        | Not in list             | `{ status: { nin: ["deleted", "hidden"] }}` |
+| `isNull`     | Is null check           | `{ description: { isNull: true }}`          |
+| `contains`   | String contains         | `{ title: { contains: "war" }}`             |
+| `startsWith` | String starts with      | `{ title: { startsWith: "The" }}`           |
+| `endsWith`   | String ends with        | `{ email: { endsWith: "@gmail.com" }}`      |
+| `includes`   | Array includes          | `{ tags: { includes: "sci-fi" }}`           |
 
 ### Expression Operators (Compare with Server Values)
 
@@ -215,14 +219,14 @@ mutation AddTag($id: UUID!, $tag: String!) @auth(level: USER) {
 }
 ```
 
-| Operator | Types | Description |
-|----------|-------|-------------|
-| `inc` | Int, Float, Date, Timestamp | Increment value |
-| `dec` | Int, Float, Date, Timestamp | Decrement value |
-| `add` | Lists | Add items if not present |
-| `remove` | Lists | Remove all matching items |
-| `append` | Lists | Append to end |
-| `prepend` | Lists | Prepend to start |
+| Operator  | Types                       | Description               |
+|-----------|-----------------------------|---------------------------|
+| `inc`     | Int, Float, Date, Timestamp | Increment value           |
+| `dec`     | Int, Float, Date, Timestamp | Decrement value           |
+| `add`     | Lists                       | Add items if not present  |
+| `remove`  | Lists                       | Remove all matching items |
+| `append`  | Lists                       | Append to end             |
+| `prepend` | Lists                       | Prepend to start          |
 
 ### Upsert
 

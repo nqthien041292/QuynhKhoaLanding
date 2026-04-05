@@ -1,6 +1,7 @@
 # Genkit Core Framework
 
-Genkit Dart is an AI SDK for Dart that provides a unified interface for text generation, structured output, tool calling, and agentic workflows.
+Genkit Dart is an AI SDK for Dart that provides a unified interface for text generation, structured output, tool
+calling, and agentic workflows.
 
 ## Initialization
 
@@ -26,6 +27,7 @@ print(response.text);
 ```
 
 ## Stream Responses
+
 ```dart
 final stream = ai.generateStream(
   model: googleAI.gemini('gemini-2.5-flash'),
@@ -38,6 +40,7 @@ await for (final chunk in stream) {
 ```
 
 ## Embed Text
+
 ```dart
 final embeddings = await ai.embedMany(
   documents: [
@@ -50,6 +53,7 @@ print(embeddings.first.embedding);
 ```
 
 ## Define Tools
+
 Models can use define actions and access external data via custom defined tools.
 Requires the `schemantic` library for schema definitions.
 
@@ -102,6 +106,7 @@ print('Name: ${person.name}, Age: ${person.age}');
 ```
 
 ## Define Flows
+
 Wrap your AI logic in flows for better observability, testing, and deployment:
 
 ```dart
@@ -123,6 +128,7 @@ print(joke);
 ```
 
 ### Streaming Flows
+
 Stream data from your flows using `context.sendChunk(...)` and returning the final value:
 
 ```dart
@@ -146,9 +152,12 @@ final streamStory = ai.defineFlow(
 ```
 
 ## Calling remote Flows from a dart client
-The `genkit` package provides `package:genkit/client.dart` representing remote Genkit actions that can be invoked or streamed using type-safe definitions.
+
+The `genkit` package provides `package:genkit/client.dart` representing remote Genkit actions that can be invoked or
+streamed using type-safe definitions.
 
 1. Defines a remote action
+
 ```dart
 import 'package:genkit/client.dart';
 
@@ -160,13 +169,15 @@ final stringAction = defineRemoteAction(
 ```
 
 2. Call the Remote Action (Non-streaming)
+
 ```dart
 final response = await stringAction(input: 'Hello from Dart!');
 print('Flow Response: $response');
 ```
 
 3. Call the Remote Action (Streaming)
-Use the `.stream()` method on the action flow, and access `stream.onResult` to wait on the async return value.
+   Use the `.stream()` method on the action flow, and access `stream.onResult` to wait on the async return value.
+
 ```dart
 final streamAction = defineRemoteAction(
   url: 'http://localhost:3400/stream-story',
@@ -245,7 +256,8 @@ streamHelloFlow();
 
 ## Data Models
 
-Genkit uses standard data models for representing prompts (messages & parts) and responses. These classes are implemented using schemantic library.
+Genkit uses standard data models for representing prompts (messages & parts) and responses. These classes are
+implemented using schemantic library.
 
 ```dart
 import 'package:genkit/genkit.dart';

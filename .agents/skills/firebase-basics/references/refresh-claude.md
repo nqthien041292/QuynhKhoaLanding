@@ -1,6 +1,7 @@
 # Refresh Claude Code Local Environment
 
-Follow these steps to refresh Claude Code's local environment, ensuring that their agent skills and plugins are fully up-to-date.
+Follow these steps to refresh Claude Code's local environment, ensuring that their agent skills and plugins are fully
+up-to-date.
 
 Use Claude Code's native plugin manager instead of `npx`.
 

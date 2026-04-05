@@ -2,7 +2,8 @@
 
 ## When Typecheck Fails
 
-**Before searching source code or docs**, check the sections below. Many type errors are caused by deprecated APIs or incorrect imports.
+**Before searching source code or docs**, check the sections below. Many type errors are caused by deprecated APIs or
+incorrect imports.
 
 ## Genkit v1.x vs Pre-1.0 Migration
 
@@ -10,13 +11,15 @@ Genkit v1.x introduced significant API changes. This section covers critical syn
 
 ### Package Imports
 
-- **Correct (v1.x)**: Import core functionality (zod, genkit) from the main `genkit` package and plugins from their specific packages.
+- **Correct (v1.x)**: Import core functionality (zod, genkit) from the main `genkit` package and plugins from their
+  specific packages.
   ```ts
   import { z, genkit } from 'genkit';
   import { googleAI } from '@genkit-ai/google-genai';
   ```
 
-- **Incorrect (Pre-1.0)**: Importing from `@genkit-ai/ai`, `@genkit-ai/core`, or `@genkit-ai/flow`. These packages are internal/deprecated for direct use.
+- **Incorrect (Pre-1.0)**: Importing from `@genkit-ai/ai`, `@genkit-ai/core`, or `@genkit-ai/flow`. These packages are
+  internal/deprecated for direct use.
   ```ts
   import { genkit } from "@genkit-ai/core"; // INCORRECT
   import { defineFlow } from "@genkit-ai/flow"; // INCORRECT
@@ -66,7 +69,8 @@ Genkit v1.x introduced significant API changes. This section covers critical syn
 
 ### Streaming Generation
 
-- **Correct (v1.x)**: Do NOT await `generateStream`. Iterate over `stream` directly. Await `response` property for final result.
+- **Correct (v1.x)**: Do NOT await `generateStream`. Iterate over `stream` directly. Await `response` property for final
+  result.
   ```ts
   const {stream, response} = ai.generateStream(...); // NO await here
   for await (const chunk of stream) { ... }          // Iterate stream
@@ -104,9 +108,9 @@ You should never import `@genkit-ai/flow`, `@genkit-ai/ai` or `@genkit-ai/core` 
 ## Zod & Schema Errors
 
 - **Import Source**: ALWAYS use `import { z } from "genkit"`.
-  - Using `zod` directly from `zod` package may cause instance mismatches or compatibility issues.
+    - Using `zod` directly from `zod` package may cause instance mismatches or compatibility issues.
 - **Supported Types**: Stick to basic types: scalar (`string`, `number`, `boolean`), `object`, and `array`.
-  - Avoid complex Zod features unless strictly necessary and verified.
+    - Avoid complex Zod features unless strictly necessary and verified.
 - **Descriptions**: Always use `.describe('...')` for fields in output schemas to guide the LLM.
 
 ## Tool Usage
@@ -116,7 +120,8 @@ You should never import `@genkit-ai/flow`, `@genkit-ai/ai` or `@genkit-ai/core` 
 
 ## Multimodal & Image Generation
 
-- **Missing responseModalities**: When using image generation models (like `gemini-2.5-flash-image`), you **MUST** specify the response modalities in the config.
+- **Missing responseModalities**: When using image generation models (like `gemini-2.5-flash-image`), you **MUST**
+  specify the response modalities in the config.
   ```ts
   config: {
     responseModalities: ["TEXT", "IMAGE"]
@@ -126,7 +131,8 @@ You should never import `@genkit-ai/flow`, `@genkit-ai/ai` or `@genkit-ai/core` 
 
 ## Audio & Speech Generation
 
-- **Raw PCM Data vs MP3**: Some providers (e.g., Google GenAI) return raw PCM data, while others (e.g., OpenAI) return MP3.
-  - **DO NOT assume MP3 format.**
-  - **DO NOT embed raw PCM in HTML audio tags.**
-  - **Action**: Run `genkit docs:search "speech audio"` to find provider-specific conversion steps (e.g., PCM to WAV).
+- **Raw PCM Data vs MP3**: Some providers (e.g., Google GenAI) return raw PCM data, while others (e.g., OpenAI) return
+  MP3.
+    - **DO NOT assume MP3 format.**
+    - **DO NOT embed raw PCM in HTML audio tags.**
+    - **Action**: Run `genkit docs:search "speech audio"` to find provider-specific conversion steps (e.g., PCM to WAV).

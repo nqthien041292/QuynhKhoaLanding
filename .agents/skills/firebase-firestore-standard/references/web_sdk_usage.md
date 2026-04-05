@@ -23,6 +23,7 @@ const db = getFirestore(app);
 ## Writing Data
 
 ### Set a Document (`setDoc`)
+
 Creates a document if it doesn't exist, or overwrites it if it does.
 
 ```javascript
@@ -40,6 +41,7 @@ await setDoc(doc(db, "cities", "LA"), { population: 3900000 }, { merge: true });
 ```
 
 ### Add a Document with Auto-ID (`addDoc`)
+
 Use when you don't care about the document ID.
 
 ```javascript
@@ -53,6 +55,7 @@ console.log("Document written with ID: ", docRef.id);
 ```
 
 ### Update a Document (`updateDoc`)
+
 Update some fields of an existing document without overwriting the entire document. Fails if the document doesn't exist.
 
 ```javascript
@@ -66,6 +69,7 @@ await updateDoc(laRef, {
 ```
 
 ### Transactions
+
 Perform an atomic read-modify-write operation.
 
 ```javascript
@@ -107,6 +111,7 @@ if (docSnap.exists()) {
 ```
 
 ### Get Multiple Documents (`getDocs`)
+
 Fetches all documents in a query or collection once.
 
 ```javascript
@@ -158,6 +163,7 @@ const unsubscribe = onSnapshot(q, (snapshot) => {
 ## Queries
 
 ### Simple and Compound Queries
+
 Use `query()` to combine filters.
 
 ```javascript
@@ -174,6 +180,7 @@ const q2 = query(citiesRef, where("state", "==", "CA"), where("population", ">",
 ```
 
 ### Order and Limit
+
 Sort and limit results.
 
 ```javascript

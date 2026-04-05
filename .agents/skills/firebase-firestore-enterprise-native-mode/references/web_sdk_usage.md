@@ -22,7 +22,9 @@ const db = getFirestore(app);
 ### Writing Data
 
 #### Set a Document
-Creates a document if it doesn't exist, or overwrites it if it does. You can also specify a merge option to only update provided fields.
+
+Creates a document if it doesn't exist, or overwrites it if it does. You can also specify a merge option to only update
+provided fields.
 
 ```javascript
 import { doc, setDoc } from "firebase/firestore"; 
@@ -39,6 +41,7 @@ await setDoc(doc(db, "cities", "LA"), { population: 3900000 }, { merge: true });
 ```
 
 #### Add a Document with Auto-ID
+
 Use when you don't care about the document ID and want Firestore to automatically generate one.
 
 ```javascript
@@ -52,6 +55,7 @@ console.log("Document written with ID: ", docRef.id);
 ```
 
 #### Update a Document
+
 Update some fields of an existing document without overwriting the entire document. Fails if the document doesn't exist.
 
 ```javascript
@@ -65,6 +69,7 @@ await updateDoc(laRef, {
 ```
 
 #### Transactions
+
 Perform an atomic read-modify-write operation.
 
 ```javascript
@@ -106,6 +111,7 @@ if (docSnap.exists()) {
 ```
 
 #### Get Multiple Documents
+
 Fetches all documents in a query or collection once.
 
 ```javascript
@@ -156,6 +162,7 @@ const unsubscribe = onSnapshot(q, (snapshot) => {
 ### Queries
 
 #### Simple and Compound Queries
+
 Use `query()` and `where()` to combine filters safely.
 
 ```javascript
@@ -172,6 +179,7 @@ const q2 = query(citiesRef, where("state", "==", "CA"), where("population", ">",
 ```
 
 #### Order and Limit
+
 Sort and limit results cleanly.
 
 ```javascript

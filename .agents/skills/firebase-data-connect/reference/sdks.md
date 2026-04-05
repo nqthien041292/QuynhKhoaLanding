@@ -1,6 +1,7 @@
 # SDK Reference
 
 ## Contents
+
 - [SDK Generation](#sdk-generation)
 - [Web SDK](#web-sdk)
 - [Android SDK](#android-sdk)
@@ -27,6 +28,7 @@ generate:
 ```
 
 Generate SDKs:
+
 ```bash
 npx -y firebase-tools@latest dataconnect:sdk:generate
 ```
@@ -241,8 +243,6 @@ connector.listMovies.publisher
 
 ---
 
-
-
 ## Admin SDK
 
 Server-side operations with elevated privileges (bypasses @auth):
@@ -282,6 +282,7 @@ generate:
 ```
 
 Generate:
+
 ```bash
 npx -y firebase-tools@latest dataconnect:sdk:generate
 ```
